@@ -25,6 +25,10 @@
   .links a, .links span { padding:6px 14px; border-radius:999px; border:1.5px solid var(--cyan);
            color:var(--cyan); text-decoration:none; font-weight:700; font-size:.9rem; }
   .links span { border-color:var(--muted); color:var(--muted); }
+  .card + .card { margin-top:24px; }
+  .card.madrid { background:linear-gradient(180deg, rgba(174,134,37,.14), var(--bg));
+                 border-color:#AE8625; box-shadow:0 0 28px rgba(174,134,37,.25); }
+  .card.madrid h2 { color:#E0B54A; }
   footer { margin-top:48px; color:var(--muted); font-size:.9rem; }
   footer a { color:var(--cyan); }
   @media (max-width:560px) { .card { flex-direction:column; text-align:center; } .links { justify-content:center; } }
@@ -43,6 +47,19 @@
       <div class="links">
         <span>Google Play · próximamente / coming soon</span>
         <a href="tempo/privacy/">Privacidad / Privacy</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="card madrid">
+    <img src="madrid/icon.png" alt="Madrid Audioguía icon">
+    <div>
+      <h2>MADRID AUDIOGUÍA</h2>
+      <p><strong>Madrid a tu ritmo.</strong> Un paseo por 15 paradas con audioguía, acertijos y más de 90 curiosidades ocultas.</p>
+      <p><strong>Madrid at your own pace.</strong> A walk through 15 stops with an audio guide, riddles and 90+ hidden curiosities.</p>
+      <div class="links">
+        <a href="madrid/support/">Soporte / Support</a>
+        <a href="madrid/privacy/">Privacidad / Privacy</a>
       </div>
     </div>
   </article>

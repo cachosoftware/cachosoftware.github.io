@@ -8,98 +8,116 @@
 <meta property="og:title" content="Cacho Software">
 <meta property="og:description" content="Juegos y apps para móvil hechos en España. Mobile games and apps made in Spain.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0F1222">
+<meta property="og:image" content="https://cachosoftware.github.io/cachosoftware_icon.png">
+<meta name="theme-color" content="#F4F1E8">
+<link rel="icon" type="image/png" href="cachosoftware_icon.png">
+<link rel="apple-touch-icon" href="cachosoftware_icon.png">
 <style>
-  :root { --bg:#F6F7FB; --surface:#FFFFFF; --fg:#151827; --muted:#5D6278; --line:#E3E6EF;
-          --ink:#0F1222; --accent:#4F46E5; --accent-soft:#EEF0FF; --ok:#0E7A4F; --ok-soft:#E3F5EC;
-          --soon:#8A5A00; --soon-soft:#FFF3D6; }
+  :root { --bg:#F4F1E8; --tile:#FFFFFF; --fg:#1D1D1F; --muted:#6E6E73; --line:rgba(29,29,31,.10);
+          --green:#3E6547; --green-dark:#2F4F37; --gold:#B8963F; }
   * { box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { margin:0; background:var(--bg); color:var(--fg);
-         font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif; }
-  a { color:var(--accent); }
-  .wrap { max-width:1040px; margin:0 auto; padding:0 20px; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased;
+         font:17px/1.47 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,"Segoe UI",Roboto,sans-serif;
+         letter-spacing:-.022em; }
+  a { color:var(--green); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 22px; }
   .l-es .en, .l-en .es { display:none; }
 
-  /* Header */
-  .top { background:var(--ink); color:#fff; }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px; }
-  .logo { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none;
-          font-weight:800; letter-spacing:.5px; font-size:1.05rem; }
-  .logo b { display:grid; place-items:center; width:32px; height:32px; border-radius:9px;
-            background:var(--accent); font-size:.95rem; }
-  .bar nav { display:flex; align-items:center; gap:22px; }
-  .bar nav a { color:#C9CCE0; text-decoration:none; font-size:.95rem; }
-  .bar nav a:hover { color:#fff; }
-  .lang { display:flex; border:1px solid #3A3F5C; border-radius:8px; overflow:hidden; }
-  .lang button { background:none; border:0; color:#C9CCE0; font:inherit; font-size:.8rem;
-                 font-weight:700; padding:5px 10px; cursor:pointer; }
-  .l-es .lang [data-l=es], .l-en .lang [data-l=en] { background:#fff; color:var(--ink); }
+  /* Navigation: translucent, sticky */
+  .nav { position:sticky; top:0; z-index:10; background:rgba(244,241,232,.72);
+         -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px);
+         border-bottom:1px solid var(--line); }
+  .nav .wrap { display:flex; align-items:center; justify-content:space-between; height:52px; }
+  .brand { display:flex; align-items:center; gap:9px; color:var(--fg); font-weight:600; font-size:15px; }
+  .brand:hover { text-decoration:none; }
+  .brand img { width:28px; height:28px; border-radius:7px; }
+  .nav nav { display:flex; align-items:center; gap:26px; font-size:13px; }
+  .nav nav a { color:rgba(29,29,31,.8); }
+  .nav nav a:hover { color:var(--fg); text-decoration:none; }
+  .lang { display:flex; gap:2px; padding:2px; border-radius:999px; background:rgba(29,29,31,.06); }
+  .lang button { border:0; background:none; font:inherit; font-size:12px; font-weight:600; color:var(--muted);
+                 padding:3px 10px; border-radius:999px; cursor:pointer; }
+  .l-es .lang [data-l=es], .l-en .lang [data-l=en] { background:#fff; color:var(--fg);
+                 box-shadow:0 1px 3px rgba(0,0,0,.12); }
 
   /* Hero */
-  .hero { background:var(--ink); color:#fff; padding:56px 0 72px; }
-  .hero h1 { margin:0; font-size:clamp(2rem,5.5vw,3.1rem); line-height:1.15; font-weight:800;
-             letter-spacing:-.5px; max-width:720px; }
-  .hero p { color:#B4B8D0; font-size:1.1rem; max-width:620px; margin:18px 0 0; }
+  .hero { text-align:center; padding:88px 0 72px; }
+  .hero-logo { width:132px; height:132px; border-radius:30px; display:block; margin:0 auto 32px;
+               box-shadow:0 20px 50px rgba(62,101,71,.22), 0 2px 6px rgba(0,0,0,.06); }
+  .eyebrow { color:var(--gold); font-weight:600; font-size:19px; margin:0 0 6px; letter-spacing:-.01em; }
+  h1 { margin:0 auto; max-width:780px; font-size:clamp(40px,7vw,72px); line-height:1.05; font-weight:700;
+       letter-spacing:-.035em; }
+  .lead { margin:22px auto 0; max-width:620px; color:var(--muted); font-size:clamp(19px,2.3vw,23px);
+          line-height:1.4; letter-spacing:-.015em; }
+  .ctas { display:flex; justify-content:center; flex-wrap:wrap; gap:14px 28px; margin-top:34px; font-size:19px; }
+  .btn { display:inline-flex; align-items:center; gap:7px; background:var(--green); color:#fff;
+         padding:11px 22px; border-radius:999px; font-weight:500; font-size:17px; transition:background .2s; }
+  .btn:hover { background:var(--green-dark); text-decoration:none; }
+  .btn svg { width:13px; height:13px; }
+  .more::after { content:" ›"; }
 
-  /* Apps */
-  .apps { padding:56px 0 24px; }
-  .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px;
-                  margin-bottom:24px; }
-  h2 { margin:0; font-size:1.5rem; letter-spacing:-.2px; }
-  .count { color:var(--muted); font-size:.95rem; }
-  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
-  .card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line);
-          border-radius:16px; padding:24px; box-shadow:0 1px 2px rgba(15,18,34,.04);
-          transition:box-shadow .2s, transform .2s; }
-  .card:hover { box-shadow:0 10px 30px rgba(15,18,34,.08); transform:translateY(-2px); }
-  .card-head { display:flex; gap:16px; align-items:center; }
-  .card img { width:72px; height:72px; border-radius:16px; flex:none;
-              box-shadow:0 0 0 1px rgba(15,18,34,.08); }
-  .card h3 { margin:0; font-size:1.2rem; line-height:1.3; }
-  .cat { color:var(--muted); font-size:.88rem; }
-  .card p { margin:16px 0 20px; color:#33374B; }
-  .meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
-  .pill { font-size:.75rem; font-weight:700; padding:2px 9px; border-radius:999px;
-          background:var(--accent-soft); color:var(--accent); }
-  .pill.live { background:var(--ok-soft); color:var(--ok); }
-  .pill.soon { background:var(--soon-soft); color:var(--soon); }
-  .actions { margin-top:auto; display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; }
-  .store { display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:#fff;
-           text-decoration:none; font-weight:700; font-size:.92rem; padding:10px 16px;
-           border-radius:10px; }
-  .store:hover { background:#262B45; }
-  .store svg { width:16px; height:16px; }
-  .store.disabled { background:#E9EBF2; color:var(--muted); cursor:default; }
-  .actions .sub { font-size:.9rem; color:var(--muted); text-decoration:none; }
-  .actions .sub:hover { color:var(--accent); text-decoration:underline; }
+  /* Section headings */
+  .section { padding:64px 0; }
+  .section-title { text-align:center; margin-bottom:44px; }
+  h2 { margin:0; font-size:clamp(32px,5vw,48px); line-height:1.08; font-weight:700; letter-spacing:-.03em; }
+  .section-title p { color:var(--muted); font-size:21px; margin:10px 0 0; }
 
-  /* About / contact */
-  .about { padding:40px 0 64px; }
-  .panel { display:grid; grid-template-columns:1.4fr 1fr; gap:32px; background:var(--surface);
-           border:1px solid var(--line); border-radius:16px; padding:32px; }
-  .panel p { color:#33374B; margin:10px 0 0; }
-  .contact-box { border-left:1px solid var(--line); padding-left:32px; }
-  .contact-box a.mail { display:inline-block; margin-top:10px; font-weight:700; word-break:break-all; }
+  /* App tiles */
+  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+  .tile { display:flex; flex-direction:column; align-items:center; text-align:center; background:var(--tile);
+          border-radius:28px; padding:48px 32px 40px; transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+  .tile:hover { transform:scale(1.015); box-shadow:0 24px 60px rgba(29,29,31,.10); }
+  .tile img { width:112px; height:112px; border-radius:25px; margin-bottom:24px;
+              box-shadow:0 10px 28px rgba(0,0,0,.16), 0 0 0 .5px rgba(0,0,0,.08); }
+  .kicker { color:var(--muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+  .tile h3 { margin:6px 0 0; font-size:28px; line-height:1.15; font-weight:700; letter-spacing:-.025em; }
+  .tile p { color:var(--muted); margin:12px 0 0; max-width:360px; font-size:17px; }
+  .tile .ctas { margin-top:auto; padding-top:28px; font-size:17px; gap:12px 22px; align-items:center; }
+  .tile .btn { padding:9px 18px; font-size:15px; }
+  .btn.soon { background:rgba(29,29,31,.07); color:var(--muted); cursor:default; }
+  .platform { margin-top:14px; font-size:12px; color:var(--muted); }
 
-  footer { border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; padding:24px 0 40px; }
-  footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; }
-  footer a { color:var(--muted); }
+  /* Values */
+  .values { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .value { background:var(--tile); border-radius:28px; padding:36px 30px; }
+  .value svg { width:34px; height:34px; color:var(--green); }
+  .value h3 { margin:18px 0 6px; font-size:21px; letter-spacing:-.02em; }
+  .value p { margin:0; color:var(--muted); font-size:16px; }
+
+  /* Contact */
+  .contact { text-align:center; padding:72px 0 96px; }
+  .contact .lead { margin-top:14px; }
+  .contact .ctas { margin-top:28px; }
+
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:12px; padding:20px 0 36px; }
+  footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; }
+  footer a { color:rgba(29,29,31,.7); }
+  footer .links { display:flex; flex-wrap:wrap; gap:6px 18px; }
+
+  /* Gentle reveal on scroll */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } .tile:hover { transform:none; } }
 
   @media (max-width:760px) {
-    .grid, .panel { grid-template-columns:1fr; }
-    .contact-box { border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:24px; }
-    .bar nav a.hide-sm { display:none; }
-    .hero { padding:40px 0 56px; }
+    .grid, .values { grid-template-columns:1fr; }
+    .nav nav a.hide-sm { display:none; }
+    .hero { padding:56px 0 48px; }
+    .hero-logo { width:108px; height:108px; border-radius:24px; }
+    .section { padding:44px 0; }
   }
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap bar">
-    <a class="logo" href="./"><b>C</b>CACHO SOFTWARE</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="cachosoftware_icon.png" alt="">Cacho Software</a>
     <nav>
-      <a class="hide-sm" href="#apps"><span class="es">Apps</span><span class="en">Apps</span></a>
+      <a class="hide-sm" href="#apps">Apps</a>
+      <a class="hide-sm" href="#estudio"><span class="es">Estudio</span><span class="en">Studio</span></a>
       <a class="hide-sm" href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a>
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button type="button" data-l="es">ES</button><button type="button" data-l="en">EN</button>
@@ -108,107 +126,122 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1><span class="es">Juegos y apps para móvil, hechos con cuidado en España.</span><span class="en">Mobile games and apps, carefully made in Spain.</span></h1>
-    <p><span class="es">Cacho Software es un estudio independiente. Creamos juegos de lógica y habilidad y audioguías interactivas para descubrir ciudades a tu ritmo.</span><span class="en">Cacho Software is an independent studio. We make logic and skill games and interactive audio guides for exploring cities at your own pace.</span></p>
-  </div>
-</section>
-
-<main class="apps" id="apps">
-  <div class="wrap">
-    <div class="section-head">
-      <h2><span class="es">Nuestras apps</span><span class="en">Our apps</span></h2>
-      <span class="count"><span class="es">3 disponibles · 1 próximamente</span><span class="en">3 available · 1 coming soon</span></span>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-logo" src="cachosoftware_icon.png" alt="Cacho Software" width="132" height="132">
+      <p class="eyebrow">Cacho Software</p>
+      <h1><span class="es">Juegos y apps, hechos con cariño.</span><span class="en">Games and apps, made with care.</span></h1>
+      <p class="lead"><span class="es">Un estudio independiente en España. Juegos de lógica y habilidad, y audioguías para descubrir ciudades a tu ritmo.</span><span class="en">An independent studio in Spain. Logic and skill games, and audio guides for exploring cities at your own pace.</span></p>
+      <div class="ctas">
+        <a class="btn" href="#apps"><span class="es">Ver las apps</span><span class="en">See the apps</span></a>
+        <a class="more" href="#contacto"><span class="es">Contactar</span><span class="en">Get in touch</span></a>
+      </div>
     </div>
+  </section>
 
-    <div class="grid">
-      <article class="card">
-        <div class="card-head">
-          <img src="tempo/icon.png" alt="Tempo" width="72" height="72">
-          <div>
-            <h3>Tempo</h3>
-            <div class="cat"><span class="es">Juego · Fútbol cronómetro</span><span class="en">Game · Stopwatch football</span></div>
-            <div class="meta"><span class="pill">Android</span><span class="pill live"><span class="es">Disponible</span><span class="en">Available</span></span></div>
-          </div>
-        </div>
-        <p><span class="es">Para el reloj a ciegas, clava el .00 para marcar un golazo y reta a un amigo en el mismo móvil.</span><span class="en">Stop the clock blind, hit .00 for a golazo and beat a friend on one phone.</span></p>
-        <div class="actions">
-          <a class="store" href="https://play.google.com/store/apps/details?id=com.cachosoftware.tempo"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg>Google Play</a>
-          <a class="sub" href="tempo/privacy/"><span class="es">Privacidad</span><span class="en">Privacy</span></a>
-        </div>
-      </article>
+  <section class="section" id="apps">
+    <div class="wrap">
+      <div class="section-title reveal">
+        <h2><span class="es">Nuestras apps.</span><span class="en">Our apps.</span></h2>
+        <p><span class="es">Disponibles en Google Play.</span><span class="en">Available on Google Play.</span></p>
+      </div>
 
-      <article class="card">
-        <div class="card-head">
-          <img src="salamanca/icon.png" alt="Salamanca" width="72" height="72">
-          <div>
-            <h3><span class="es">Salamanca: Audioguía + Escape</span><span class="en">Salamanca: Audio Guide + Escape</span></h3>
-            <div class="cat"><span class="es">Viajes · Audioguía</span><span class="en">Travel · Audio guide</span></div>
-            <div class="meta"><span class="pill">Android</span><span class="pill live"><span class="es">Disponible</span><span class="en">Available</span></span></div>
+      <div class="grid">
+        <article class="tile reveal">
+          <img src="tempo/icon.png" alt="Tempo" width="112" height="112">
+          <span class="kicker"><span class="es">Juego</span><span class="en">Game</span></span>
+          <h3>Tempo</h3>
+          <p><span class="es">Para el reloj a ciegas, clava el .00 para marcar un golazo y reta a un amigo en el mismo móvil.</span><span class="en">Stop the clock blind, hit .00 for a golazo and beat a friend on one phone.</span></p>
+          <div class="ctas">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.cachosoftware.tempo"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg><span class="es">Descargar</span><span class="en">Download</span></a>
+            <a class="more" href="tempo/privacy/"><span class="es">Privacidad</span><span class="en">Privacy</span></a>
           </div>
-        </div>
-        <p><span class="es">Visita Salamanca con una audioguía interactiva y resuelve misterios en cada parada.</span><span class="en">Visit Salamanca with an interactive audio guide and solve mysteries at every stop.</span></p>
-        <div class="actions">
-          <a class="store" href="https://play.google.com/store/apps/details?id=com.cachosoftware.salamancafreetour"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg>Google Play</a>
-        </div>
-      </article>
+          <span class="platform">Android</span>
+        </article>
 
-      <article class="card">
-        <div class="card-head">
-          <img src="chessologic/icon.png" alt="Chessologic" width="72" height="72">
-          <div>
-            <h3>Chessologic</h3>
-            <div class="cat"><span class="es">Juego · Puzzles de ajedrez</span><span class="en">Game · Chess puzzles</span></div>
-            <div class="meta"><span class="pill">Android</span><span class="pill live"><span class="es">Disponible</span><span class="en">Available</span></span></div>
+        <article class="tile reveal">
+          <img src="chessologic/icon.png" alt="Chessologic" width="112" height="112">
+          <span class="kicker"><span class="es">Juego de lógica</span><span class="en">Logic game</span></span>
+          <h3>Chessologic</h3>
+          <p><span class="es">Puzzles con piezas de ajedrez: iguala el tablero objetivo en el menor número de movimientos.</span><span class="en">Chess logic puzzles: match the target board in the fewest moves and go for a perfect score.</span></p>
+          <div class="ctas">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.cachosoftware.chessologic"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg><span class="es">Descargar</span><span class="en">Download</span></a>
           </div>
-        </div>
-        <p><span class="es">Puzzles de lógica con piezas de ajedrez: iguala el tablero objetivo en el menor número de movimientos.</span><span class="en">Chess logic puzzles: match the target board in the fewest moves and go for a perfect score.</span></p>
-        <div class="actions">
-          <a class="store" href="https://play.google.com/store/apps/details?id=com.cachosoftware.chessologic"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg>Google Play</a>
-        </div>
-      </article>
+          <span class="platform">Android</span>
+        </article>
 
-      <article class="card">
-        <div class="card-head">
-          <img src="madrid/icon.png" alt="Madrid Audioguía" width="72" height="72">
-          <div>
-            <h3><span class="es">Madrid Audioguía</span><span class="en">Madrid Audio Guide</span></h3>
-            <div class="cat"><span class="es">Viajes · Audioguía</span><span class="en">Travel · Audio guide</span></div>
-            <div class="meta"><span class="pill">Android</span><span class="pill">iOS</span><span class="pill soon"><span class="es">Próximamente</span><span class="en">Coming soon</span></span></div>
+        <article class="tile reveal">
+          <img src="salamanca/icon.png" alt="Salamanca" width="112" height="112">
+          <span class="kicker"><span class="es">Viajes · Audioguía</span><span class="en">Travel · Audio guide</span></span>
+          <h3><span class="es">Salamanca: Audioguía + Escape</span><span class="en">Salamanca: Audio Guide + Escape</span></h3>
+          <p><span class="es">Visita Salamanca con una audioguía interactiva y resuelve misterios en cada parada.</span><span class="en">Visit Salamanca with an interactive audio guide and solve mysteries at every stop.</span></p>
+          <div class="ctas">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.cachosoftware.salamancafreetour"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M3 1.5v13l11-6.5z"/></svg><span class="es">Descargar</span><span class="en">Download</span></a>
           </div>
-        </div>
-        <p><span class="es">Madrid a tu ritmo: 15 paradas con audioguía, acertijos y más de 90 curiosidades ocultas.</span><span class="en">Madrid at your own pace: 15 stops with an audio guide, riddles and 90+ hidden curiosities.</span></p>
-        <div class="actions">
-          <span class="store disabled"><span class="es">Próximamente</span><span class="en">Coming soon</span></span>
-          <a class="sub" href="madrid/support/"><span class="es">Soporte</span><span class="en">Support</span></a>
-          <a class="sub" href="madrid/privacy/"><span class="es">Privacidad</span><span class="en">Privacy</span></a>
-        </div>
-      </article>
+          <span class="platform">Android</span>
+        </article>
+
+        <article class="tile reveal">
+          <img src="madrid/icon.png" alt="Madrid Audioguía" width="112" height="112">
+          <span class="kicker"><span class="es">Viajes · Audioguía</span><span class="en">Travel · Audio guide</span></span>
+          <h3><span class="es">Madrid Audioguía</span><span class="en">Madrid Audio Guide</span></h3>
+          <p><span class="es">Madrid a tu ritmo: 15 paradas con audioguía, acertijos y más de 90 curiosidades ocultas.</span><span class="en">Madrid at your own pace: 15 stops with an audio guide, riddles and 90+ hidden curiosities.</span></p>
+          <div class="ctas">
+            <span class="btn soon"><span class="es">Próximamente</span><span class="en">Coming soon</span></span>
+            <a class="more" href="madrid/support/"><span class="es">Soporte</span><span class="en">Support</span></a>
+            <a class="more" href="madrid/privacy/"><span class="es">Privacidad</span><span class="en">Privacy</span></a>
+          </div>
+          <span class="platform">Android · iOS</span>
+        </article>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="section" id="estudio">
+    <div class="wrap">
+      <div class="section-title reveal">
+        <h2><span class="es">Pequeños detalles.<br>Gran diferencia.</span><span class="en">Small details.<br>Big difference.</span></h2>
+      </div>
+      <div class="values">
+        <div class="value reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3><span class="es">Tu privacidad, primero</span><span class="en">Your privacy, first</span></h3>
+          <p><span class="es">Recogemos lo mínimo y guardamos tus datos en tu dispositivo siempre que es posible.</span><span class="en">We collect as little as possible and keep your data on your device whenever we can.</span></p>
+        </div>
+        <div class="value reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <h3><span class="es">Sencillas de usar</span><span class="en">Simple to use</span></h3>
+          <p><span class="es">Apps claras y rápidas, pensadas para abrirlas y disfrutar desde el primer segundo.</span><span class="en">Clear, fast apps designed to open and enjoy from the very first second.</span></p>
+        </div>
+        <div class="value reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12c0 5-8 9-8 9s-8-4-8-9a8 8 0 0116 0z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3><span class="es">Hechas en España</span><span class="en">Made in Spain</span></h3>
+          <p><span class="es">Un estudio independiente que diseña, desarrolla y da soporte a cada app en persona.</span><span class="en">An independent studio that designs, builds and supports every app personally.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap reveal">
+      <h2><span class="es">¿Hablamos?</span><span class="en">Let's talk.</span></h2>
+      <p class="lead"><span class="es">Soporte, prensa o colaboraciones. Respondemos lo antes posible.</span><span class="en">Support, press or partnerships. We reply as soon as we can.</span></p>
+      <div class="ctas">
+        <a class="btn" href="mailto:alvaro.hidalgo.dev@gmail.com">alvaro.hidalgo.dev@gmail.com</a>
+      </div>
+    </div>
+  </section>
 </main>
-
-<section class="about" id="contacto">
-  <div class="wrap">
-    <div class="panel">
-      <div>
-        <h2><span class="es">Sobre nosotros</span><span class="en">About us</span></h2>
-        <p><span class="es">Somos un estudio pequeño e independiente con sede en España. Diseñamos cada app para que sea sencilla, rápida y respetuosa con tu privacidad: sin cuentas obligatorias y guardando tus datos en tu dispositivo siempre que es posible.</span><span class="en">We are a small, independent studio based in Spain. We design every app to be simple, fast and respectful of your privacy: no mandatory accounts, and your data stays on your device whenever possible.</span></p>
-      </div>
-      <div class="contact-box">
-        <h2><span class="es">Contacto</span><span class="en">Contact</span></h2>
-        <p><span class="es">Soporte, prensa o colaboraciones:</span><span class="en">Support, press or partnerships:</span></p>
-        <a class="mail" href="mailto:alvaro.hidalgo.dev@gmail.com">alvaro.hidalgo.dev@gmail.com</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Cacho Software</span>
-    <span><a href="tempo/privacy/">Tempo · <span class="es">Privacidad</span><span class="en">Privacy</span></a> · <a href="madrid/privacy/">Madrid · <span class="es">Privacidad</span><span class="en">Privacy</span></a></span>
+    <span>Copyright © 2026 Cacho Software. <span class="es">Todos los derechos reservados.</span><span class="en">All rights reserved.</span></span>
+    <span class="links">
+      <a href="tempo/privacy/"><span class="es">Privacidad de Tempo</span><span class="en">Tempo Privacy</span></a>
+      <a href="madrid/privacy/"><span class="es">Privacidad de Madrid Audioguía</span><span class="en">Madrid Audio Guide Privacy</span></a>
+      <a href="madrid/support/"><span class="es">Soporte</span><span class="en">Support</span></a>
+    </span>
   </div>
 </footer>
 
@@ -226,6 +259,18 @@
     document.querySelectorAll('.lang button').forEach(function (b) {
       b.addEventListener('click', function () { set(b.getAttribute('data-l')); });
     });
+
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
   })();
 </script>
 </body>

@@ -10,6 +10,7 @@ Developer website for Cacho Software apps (GitHub Pages).
   the madrid-tour repo's `assets/store/privacy_policy.pdf`, which sits next to it).
   Keep both in sync when the policy changes.
 - `madrid/support/` – Madrid Audioguía support page (App Store "Support URL").
+- `cachosoftware_icon.png` – Studio logo (nav, hero, favicon, share image).
 - `index.html` – Studio home page. Lists every app with its store link; the
   ES/EN toggle uses `.es` / `.en` spans (default from the browser language).
 - `salamanca/icon.png`, `chessologic/icon.png` – Store icons (512 px) used on
